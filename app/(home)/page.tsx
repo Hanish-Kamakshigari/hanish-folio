@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar"
 import Herosection from "./components/Herosection"
 import Skills from "./components/Skills"
 import Galaxy from '../../components/Galaxy'
-
+import { StickyScrollRevealDemo } from "./components/projects"
 export default function Home() {
   return (
     <div className="relative bg-black overflow-hidden">
@@ -34,6 +34,8 @@ export default function Home() {
         <Herosection />
 
         <Skills />
+
+        <StickyScrollRevealDemo />
 
       </div>
     </div>
