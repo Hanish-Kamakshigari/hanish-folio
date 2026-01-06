@@ -1,5 +1,4 @@
 'use client'
-
 import {
   Code,
   FileCode,
@@ -11,7 +10,6 @@ import {
   Terminal,
   Database,
 } from 'lucide-react'
-
 export default function Skills() {
   const skills = [
     { name: 'HTML', icon: <FileCode className="text-orange-400" /> },
@@ -31,7 +29,7 @@ export default function Skills() {
   return (
     <section className="relative py-20 px-6 bg-black text-white">
       
-      {/* Heading */}
+      
       <div className="max-w-6xl mx-auto text-center mb-12">
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">
           Skills
@@ -40,8 +38,6 @@ export default function Skills() {
           Technologies and tools I work with
         </p>
       </div>
-
-      {/* Skills Grid */}
       <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
         {skills.map((skill) => (
           <div
@@ -58,7 +54,6 @@ export default function Skills() {
           </div>
         ))}
       </div>
-
     </section>
   )
 }
