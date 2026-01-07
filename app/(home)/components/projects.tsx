@@ -45,21 +45,23 @@ const content: Project[] = [
 export function StickyScrollRevealDemo() {
   return (
     <section className="w-full bg-black py-20">
+      {/* Heading */}
       <h2 className="mb-16 text-center text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
         Projects
       </h2>
 
-      {/* ✅ Desktop / Tablet (Sticky Scroll) */}
+      {/* ===================== DESKTOP ===================== */}
       <div className="hidden md:block">
         <StickyScroll content={content} />
       </div>
 
-      {/* ✅ Mobile (Same layout, no sticky) */}
-      <div className="md:hidden space-y-20 px-4">
+      {/* ===================== MOBILE ===================== */}
+      {/* Matches left video layout */}
+      <div className="md:hidden px-4 max-w-md mx-auto space-y-24">
         {content.map((item, index) => (
           <div
             key={index}
-            className="grid grid-cols-2 items-center gap-6"
+            className="grid grid-cols-[1.4fr_1fr] items-center gap-5"
           >
             {/* Left: Text */}
             <div>
@@ -72,7 +74,7 @@ export function StickyScrollRevealDemo() {
             </div>
 
             {/* Right: Card */}
-            <div className="aspect-square rounded-xl bg-gradient-to-br from-cyan-500 to-emerald-500 flex items-center justify-center text-white text-sm">
+            <div className="aspect-[4/3] rounded-xl bg-gradient-to-br from-cyan-500 to-emerald-500 flex items-center justify-center text-white text-xs text-center px-2">
               {item.title}
             </div>
           </div>
