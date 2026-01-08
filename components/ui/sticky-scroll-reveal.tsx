@@ -21,12 +21,14 @@ export const StickyScroll = ({
     // uncomment line 22 and comment line 23 if you DONT want the overflow container and want to have it change on the entire page scroll
     // target: ref
     container: ref,
-    offset: ["start start", "end start"],
+    offset: ["start start", "end end"],
   });
   const cardLength = content.length;
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const cardsBreakpoints = content.map((_, index) => index / cardLength);
+    const cardsBreakpoints = content.map(
+  (_, index) => index / (cardLength - 1),
+);
     const closestBreakpointIndex = cardsBreakpoints.reduce(
       (acc, breakpoint, index) => {
         const distance = Math.abs(latest - breakpoint);
@@ -64,7 +66,7 @@ export const StickyScroll = ({
       animate={{
         backgroundColor: backgroundColors[activeCard % backgroundColors.length],
       }}
-      className="relative flex h-[30rem] justify-center space-x-10 overflow-y-auto rounded-md p-10"
+      className="relative flex h-[70vh] justify-center space-x-10 overflow-y-auto rounded-md p-10"
       ref={ref}
     >
       <div className="div relative flex items-start px-4">

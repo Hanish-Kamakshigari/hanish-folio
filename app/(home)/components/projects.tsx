@@ -1,85 +1,130 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { StickyScroll } from "../../../components/ui/sticky-scroll-reveal";
 
 type Project = {
   title: string;
   description: string;
-  content: React.ReactNode;
+  image: string;
+  github?: string;
+  live?: string;
 };
 
-const content: Project[] = [
+const projects: Project[] = [
   {
     title: "Personal Portfolio",
     description:
-      "Designed and developed a responsive personal portfolio using Next.js and Tailwind CSS, featuring animated backgrounds, interactive UI components, and structured sections for skills and projects.",
-    content: (
-      <div className="flex h-full w-full items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500 to-emerald-500 text-white text-sm">
-        Personal Portfolio
-      </div>
-    ),
+      "A responsive personal portfolio built using Next.js and Tailwind CSS with modern UI, animations, and optimized performance.",
+    image: "/projects/portfolio.png",
+    github: "https://github.com/Hanish-Kamakshigari",
+    live: "https://hanish-folio.vercel.app",
   },
   {
     title: "Fire Weather Index using Machine Learning",
     description:
-      "Developed a machine learning model to predict fire weather conditions using historical data and current weather patterns. Evaluated with accuracy, precision, and recall, and deployed as a Flask web application.",
-    content: (
-      <div className="flex h-full w-full items-center justify-center rounded-xl bg-gradient-to-br from-orange-500 to-yellow-500 text-white text-sm">
-        Fire Weather Index
-      </div>
-    ),
+      "Machine learning model to predict fire weather conditions using historical climate data and deployed using Flask.",
+    image: "/projects/FWI.png",
+    github: "https://github.com/Hanish-Kamakshigari",
   },
   {
-    title: "Version Control",
+    title: "Version Control System",
     description:
-      "Implemented Git and GitHub workflows to ensure seamless collaboration, efficient branching, real-time updates, and conflict resolution across projects.",
-    content: (
-      <div className="flex h-full w-full items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 text-white text-sm">
-        Version Control
-      </div>
-    ),
+      "Hands-on experience with Git and GitHub including branching, rebasing, and collaborative workflows.",
+    image: "/projects/VCS.png",
+    github: "https://github.com/Hanish-Kamakshigari",
   },
 ];
 
 export function StickyScrollRevealDemo() {
+  const [openImage, setOpenImage] = useState<string | null>(null);
+
   return (
-    <section className="w-full bg-black py-20">
+    <section className="w-full bg-black py-24">
       {/* Heading */}
-      <h2 className="mb-16 text-center text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+      <h2 className="mb-20 text-center text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
         Projects
       </h2>
 
-      {/* ===================== DESKTOP ===================== */}
-      <div className="hidden md:block">
-        <StickyScroll content={content} />
+      {/* ================= DESKTOP ================= */}
+      <div className="hidden md:block px-6">
+        <div className="max-w-[1400px] mx-auto">
+          <StickyScroll
+            content={projects.map((project) => ({
+              title: project.title,
+              description: project.description,
+              content: (
+                <div
+                  className="relative mx-auto w-full max-w-xl aspect-[4/3] overflow-hidden cursor-pointer "
+                  onClick={() => setOpenImage(project.image)}
+                >
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                </div>
+              ),
+            }))}
+          />
+        </div>
       </div>
 
-      {/* ===================== MOBILE ===================== */}
-      {/* Matches left video layout */}
-      <div className="md:hidden px-4 max-w-md mx-auto space-y-24">
-        {content.map((item, index) => (
-          <div
-            key={index}
-            className="grid grid-cols-[1.4fr_1fr] items-center gap-5"
-          >
-            {/* Left: Text */}
-            <div>
-              <h3 className="mb-3 text-lg font-bold text-white">
-                {item.title}
-              </h3>
-              <p className="text-sm leading-relaxed text-gray-300">
-                {item.description}
-              </p>
-            </div>
+      {/* ================= MOBILE ================= */}
+      <div className="md:hidden px-4 space-y-16">
+        {projects.map((project, index) => (
+          <div key={index} className="space-y-4">
+            <img
+              src={project.image}
+              alt={project.title}
+              onClick={() => setOpenImage(project.image)}
+              className="w-full aspect-[16/9] rounded-xl object-cover cursor-pointer"
+            />
 
-            {/* Right: Card */}
-            <div className="aspect-[4/3] rounded-xl bg-gradient-to-br from-cyan-500 to-emerald-500 flex items-center justify-center text-white text-xs text-center px-2">
-              {item.title}
+            <h3 className="text-lg font-bold text-white">
+              {project.title}
+            </h3>
+
+            <p className="text-sm text-gray-400 leading-relaxed">
+              {project.description}
+            </p>
+
+            <div className="flex gap-4">
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  className="rounded-lg bg-white px-4 py-2 text-sm font-medium text-black"
+                >
+                  GitHub
+                </a>
+              )}
+              {project.live && (
+                <a
+                  href={project.live}
+                  target="_blank"
+                  className="rounded-lg border border-white px-4 py-2 text-sm text-white"
+                >
+                  Live
+                </a>
+              )}
             </div>
           </div>
         ))}
       </div>
+
+      {/* ================= FULLSCREEN MODAL ================= */}
+      {openImage && (
+        <div
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center px-4"
+          onClick={() => setOpenImage(null)}
+        >
+          <img
+            src={openImage}
+            className="max-h-[90vh] max-w-[90vw] rounded-xl"
+          />
+        </div>
+      )}
     </section>
   );
 }
