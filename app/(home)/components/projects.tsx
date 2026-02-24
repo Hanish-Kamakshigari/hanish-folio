@@ -13,12 +13,11 @@ type Project = {
 
 const projects: Project[] = [
   {
-    title: "Personal Portfolio",
+    title: "Zest",
     description:
-      "A responsive personal portfolio built using Next.js and Tailwind CSS with modern UI, animations, and optimized performance.",
-    image: "/projects/portfolio.png",
+      "AI Web Page Summarizer",
+    image: "/projects/screenshot1.png",
     github: "https://github.com/Hanish-Kamakshigari",
-    live: "https://hanish-folio.vercel.app",
   },
   {
     title: "Fire Weather Index using Machine Learning",
