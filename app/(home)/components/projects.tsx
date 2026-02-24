@@ -15,7 +15,7 @@ const projects: Project[] = [
   {
     title: "Zest",
     description:
-      "AI Web Page Summarizer",
+      "Zest is an AI-powered Chrome extension that can summarize any web page in just a few seconds.",
     image: "/projects/screenshot1.png",
     github: "https://github.com/Hanish-Kamakshigari",
   },
