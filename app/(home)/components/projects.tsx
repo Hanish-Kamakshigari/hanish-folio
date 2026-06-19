@@ -13,6 +13,13 @@ type Project = {
 
 const projects: Project[] = [
   {
+    title: "Sagacore",
+    description:
+      "An AI-powered epic quest generator and agent platform that turns user goals and ambitions into gamified legendary pathways.",
+    image: "/projects/sagacore.png",
+    github: "https://github.com/Hanish-Kamakshigari",
+  },
+  {
     title: "Zest",
     description:
       "Zest is an AI-powered Chrome extension that can summarize any web page in just a few seconds.",
